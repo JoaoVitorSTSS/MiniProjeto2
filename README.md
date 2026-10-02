@@ -570,8 +570,6 @@ flowchart LR
     E["Tamanho ímpar"] --> F["Mantém caractere central"]
 ```
 
-> ⚠️ **Ponto de atenção:** a implementação fornecida percorre a primeira metade em ordem decrescente ao preencher o vetor original. Por isso, o comportamento efetivo do código pode inverter a ordem da primeira metade durante a troca. Assim, essa função deve ser testada cuidadosamente contra os exemplos do enunciado.
-
 ---
 
 # 🧠 Fluxo da `main()`
@@ -921,90 +919,6 @@ Considerando `n` como o tamanho da mensagem:
 | `trocarMetades` | O(n) | O(n) |
 
 > **Observação:** na linha da função `deslocar`, `n` representa o parâmetro de deslocamento, enquanto na tabela `n` também é usado informalmente para representar o tamanho. A ideia é destacar que o custo atual cresce proporcionalmente ao valor absoluto do deslocamento.
-
----
-
-# ⚠️ Pontos de atenção no código atual
-
-Esta seção registra características observadas **na versão do código documentada neste README**.
-
-## 1. Leitura da mensagem
-
-O código apresentado contém:
-
-```c
-scanf(" *%*[^\n]", string);
-```
-
-Essa instrução merece revisão, pois o especificador utilizado contém um `*` adicional e não corresponde à forma usual de realizar a leitura da linha para `string`.
-
-Para documentar o comportamento esperado do projeto, a intenção parece ser ler a primeira linha inteira, incluindo espaços.
-
----
-
-## 2. Operações inválidas
-
-O enunciado determina que o protocolo deve terminar quando for digitado `0` **ou qualquer código que não corresponda a uma operação válida**.
-
-Na implementação atual, a `main` trata explicitamente:
-
-```text
-0, 1, 2, 3, 4, 5, 6
-```
-
-mas não possui uma condição de encerramento dentro do bloco de códigos inválidos.
-
-Portanto, esse comportamento deve ser considerado em testes de conformidade.
-
----
-
-## 3. Variáveis não utilizadas
-
-A `main` declara:
-
-```c
-int i = 0;
-int tamanho = tamanhoString(s);
-```
-
-mas esses valores não são utilizados posteriormente.
-
-Eles podem ser removidos em uma etapa de limpeza do código.
-
----
-
-## 4. `trocarMetades`
-
-O enunciado define:
-
-```text
-ABCDEF → DEFABC
-ABCDE → DECAB
-```
-
-A implementação atual utiliza índices decrescentes para preencher parte da string, o que pode produzir uma ordem diferente da especificada.
-
-Por isso, essa função merece testes específicos antes da entrega final.
-
----
-
-# ✅ Checklist do projeto
-
-| Requisito | Documentação |
-|---|---|
-| Identificação dos integrantes | ✅ |
-| Comandos de compilação | ✅ |
-| Comandos de execução | ✅ |
-| Visão geral do sistema | ✅ |
-| Fluxo da `main` | ✅ |
-| Lógica das funções principais | ✅ |
-| Funções auxiliares | ✅ |
-| Decisão sobre ponteiros | ✅ |
-| Decisão sobre ASCII | ✅ |
-| Tratamento de rotação positiva/negativa | ✅ |
-| Exemplos de entrada e saída | ✅ |
-| Diagramas Mermaid | ✅ |
-| Pontos de atenção da implementação | ✅ |
 
 ---
 
